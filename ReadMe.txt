@@ -5,7 +5,7 @@
 1.定义一个UploadFile对象
 2.使用CreateSendFile这个工厂方法返回ISendFileInterface*类型对象
 3.你可以直接定义一个ISendFileInterface*指针来接收该返回值，通过多态实现功能；也可以定义一个CFileClient*来接收该返回值
-4.函数注释
+4.ISendFileInterface接口中函数注释
   4.1 ChoseFile函数
   返回值：出错返回0，正常返回文件大小
   参数1：文件名
@@ -23,3 +23,4 @@
 	unsigned int	uploaded;	//已经上传的字节数
 	bool			finished;	//上传是否完成
 }TransInfo,*PTransInfo;
+5.传输完成后，使用DeleteSendFile删除创建的ISendFileInterface*对象
