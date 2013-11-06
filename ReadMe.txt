@@ -1,41 +1,25 @@
 ========================================================================
-    DYNAMIC LINK LIBRARY : UploadFile Project Overview
+    使用帮助文档
 ========================================================================
 
-AppWizard has created this UploadFile DLL for you.  
-This file contains a summary of what you will find in each of the files that
-make up your UploadFile application.
+1.定义一个UploadFile对象
+2.使用CreateSendFile这个工厂方法返回ISendFileInterface*类型对象
+3.你可以直接定义一个ISendFileInterface*指针来接收该返回值，通过多态实现功能；也可以定义一个CFileClient*来接收该返回值
+4.函数注释
+  4.1 ChoseFile函数
+  返回值：出错返回0，正常返回文件大小
+  参数1：文件名
+  参数2：自己命名的文件类型
 
+  4.2 Connect函数
+  返回值：返回连接状态，true/false
+  参数1：指定对端的地址。
+  参数2：端口
 
-
-UploadFile.vcproj
-    This is the main project file for VC++ projects generated using an Application Wizard. 
-    It contains information about the version of Visual C++ that generated the file, and 
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
-
-UploadFile.cpp
-    This is the main DLL source file.
-
-	When created, this DLL does not export any symbols. As a result, it  
-	will not produce a .lib file when it is built. If you wish this project 
-	to be a project dependency of some other project, you will either need to 
-	add code to export some symbols from the DLL so that an export library 
-	will be produced, or you can set the Ignore Input Library property to Yes 
-	on the General propert page of the Linker folder in the project's Property 
-	Pages dialog box.
-
-/////////////////////////////////////////////////////////////////////////////
-Other standard files:
-
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named UploadFile.pch and a precompiled types file named StdAfx.obj.
-
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
-
-/////////////////////////////////////////////////////////////////////////////
+  4.3 SendFile函数
+  返回值：0-发送完成，-1出错
+  参数：PTransInfo，记录文件上传状态，其中PTransInfo定义如下
+  typedef struct {
+	unsigned int	uploaded;	//已经上传的字节数
+	bool			finished;	//上传是否完成
+}TransInfo,*PTransInfo;
